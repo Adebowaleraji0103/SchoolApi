@@ -1,5 +1,12 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using SchoolApi.Application.Interfaces.IServices;
+using SchoolApi.Application.Interfaces.IUnitOfWork;
+using SchoolApi.Application.Services;
+using SchoolApi.Domain.Entities;
 using SchoolApi.Infrastructure.Persistence.Data;
+using SchoolApi.Infrastructure.Persistence.Services;
+using SchoolApi.Infrastructure.Persistence.UnitOfWork;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,16 +16,24 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlSer
        builder.Configuration.GetConnectionString("DefaultConnection")
     ));
 
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IStudentService, StudentServices>();
+builder.Services.AddScoped<ITeacherService, TeacherService>();
+builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+app.UseSwagger();
+app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
