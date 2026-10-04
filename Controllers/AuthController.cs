@@ -19,8 +19,8 @@ namespace SchoolApi.Controllers
         public async Task<IActionResult> RegisterAsync(RegisterDto dto)
         {
 
-            var user = await _authService.RegisterAsync(dto);
-            return Ok(user);
+             await _authService.RegisterAsync(dto);
+            return Ok();
         }
     }
     
