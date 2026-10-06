@@ -1,8 +1,29 @@
 [
   {
     "ContainingType": "SchoolApi.Controllers.AuthController",
+    "Method": "LoginAsync",
+    "RelativePath": "api/Auth/{Login}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "SchoolApi.Application.DTOS.UserDto.LoginDto",
+        "IsRequired": true
+      },
+      {
+        "Name": "Login",
+        "Type": "",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SchoolApi.Controllers.AuthController",
     "Method": "RegisterAsync",
-    "RelativePath": "api/Auth",
+    "RelativePath": "api/Auth/Register",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,

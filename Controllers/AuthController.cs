@@ -15,12 +15,38 @@ namespace SchoolApi.Controllers
             _authService = authService;
         }
 
-        [HttpPost]
+        [HttpPost("Register")]
         public async Task<IActionResult> RegisterAsync(RegisterDto dto)
         {
+            try
+            {
+                await _authService.RegisterAsync(dto);
+                return Ok("Login Succesful");
+            }
+            catch (ArgumentException ex)
+            {
+               return BadRequest(ex.Message);
+            }
 
-             await _authService.RegisterAsync(dto);
-            return Ok();
+            catch(InvalidOperationException ex)
+            {
+                return Conflict(ex.Message);
+            }
+
+        }
+
+        [HttpPost("{Login}")]
+        public async Task<IActionResult> LoginAsync(LoginDto dto)
+        {
+            try
+            {
+                await _authService.LoginAsync(dto);
+                return Ok("Login Succesful");
+            }
+            catch(UnauthorizedAccessException ex)
+            {
+                return Unauthorized(ex.Message);
+            }
         }
     }
     
