@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "4Pu3iZyx3o8=",
+  "dgSpecHash": "7FEl4awk0c4=",
   "success": true,
   "projectFilePath": "C:\\Users\\Raji\\source\\repos\\.netProjects\\SchoolApi\\SchoolApi\\SchoolApi.csproj",
   "expectedPackageFiles": [
@@ -65,7 +65,7 @@
     {
       "code": "NU1510",
       "level": "Warning",
-      "message": "PackageReference Microsoft.AspNetCore.Identity will not be pruned. Consider removing this package from your dependencies, as it is likely unnecessary.",
+      "message": "PackageReference Microsoft.AspNetCore.Identity will not be pruned. This package is automatically available and does not need to be referenced explicitly. Remove the PackageReference item.",
       "projectPath": "C:\\Users\\Raji\\source\\repos\\.netProjects\\SchoolApi\\SchoolApi\\SchoolApi.csproj",
       "warningLevel": 1,
       "filePath": "C:\\Users\\Raji\\source\\repos\\.netProjects\\SchoolApi\\SchoolApi\\SchoolApi.csproj",
