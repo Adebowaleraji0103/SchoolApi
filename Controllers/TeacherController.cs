@@ -33,8 +33,15 @@ namespace SchoolApi.Controllers
         [HttpGet("GetById")]
         public async Task<IActionResult> GetByIdAsync(Guid Id)
         {
-            var teacher = await _service.GetTeacherByIdAsync(Id);
-            return Ok(teacher);
+            try
+            {
+                var teacher = await _service.GetTeacherByIdAsync(Id);
+                return Ok(teacher);
+            }
+            catch(KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
 
         [HttpPut]
