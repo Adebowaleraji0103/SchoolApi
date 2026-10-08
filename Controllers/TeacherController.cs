@@ -23,5 +23,46 @@ namespace SchoolApi.Controllers
             return Ok(teacher);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetALlTeacherAsync()
+        {
+            var teachers = await _service.GetAllTeacherAsync();
+            return Ok(teachers);
+        }
+
+        [HttpGet("GetById")]
+        public async Task<IActionResult> GetByIdAsync(Guid Id)
+        {
+            var teacher = await _service.GetTeacherByIdAsync(Id);
+            return Ok(teacher);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update(Guid Id, UpdateTeacherDto dto)
+        {
+            try
+            {
+                var teacher = await _service.Update(Id, dto);
+                return Ok(teacher);
+            }
+            catch(KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete (Guid Id)
+        {
+            try
+            {
+                var teacher = await _service.Delete(Id);
+                return Ok(teacher);
+            }
+            catch(KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
     }
 }
