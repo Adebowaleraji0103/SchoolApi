@@ -174,3 +174,5 @@ C:\Users\Raji\source\repos\.netProjects\SchoolApi\SchoolApi\bin\Debug\net10.0\Sw
 C:\Users\Raji\source\repos\.netProjects\SchoolApi\SchoolApi\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\Raji\source\repos\.netProjects\SchoolApi\SchoolApi\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\Raji\source\repos\.netProjects\SchoolApi\SchoolApi\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
+C:\Users\Raji\source\repos\.netProjects\SchoolApi\SchoolApi\bin\Debug\net10.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Raji\source\repos\.netProjects\SchoolApi\SchoolApi\bin\Debug\net10.0\Microsoft.Bcl.Cryptography.dll
