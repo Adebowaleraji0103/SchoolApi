@@ -1,5 +1,7 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using SchoolApi.Application.Interfaces.IServices;
 using SchoolApi.Application.Interfaces.IUnitOfWork;
 using SchoolApi.Application.Services;
@@ -21,6 +23,16 @@ builder.Services.AddScoped<IStudentService, StudentServices>();
 builder.Services.AddScoped<ITeacherService, TeacherService>();
 builder.Services.AddScoped<IAuthService, AuthServices>();
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+
+var jwtSettings = builder.Configuration.GetSection("Jwt");
+var secretKey = jwtSettings["key"];
+
+builder.Services.AddAuthentication(options => 
+   {
+       options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+       options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+       
+   });
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
