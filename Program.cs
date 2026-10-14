@@ -27,12 +27,12 @@ builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 var jwtSettings = builder.Configuration.GetSection("Jwt");
 var secretKey = jwtSettings["key"];
 
-builder.Services.AddAuthentication(options => 
-   {
-       options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-       options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-       
-   });
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+});
+
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
