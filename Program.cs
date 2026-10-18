@@ -27,6 +27,10 @@ builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 var jwtSettings = builder.Configuration.GetSection("Jwt");
 var secretKey = jwtSettings["key"];
 
+if (string.IsNullOrWhiteSpace(secretKey)){
+    throw new InvalidOperationException("Jwt secret key is empty or missing");
+};
+
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
