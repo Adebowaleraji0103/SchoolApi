@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using SchoolApi.Application.Interfaces.IServices;
 using SchoolApi.Application.Interfaces.IUnitOfWork;
 using SchoolApi.Application.Services;
@@ -9,6 +10,7 @@ using SchoolApi.Domain.Entities;
 using SchoolApi.Infrastructure.Persistence.Data;
 using SchoolApi.Infrastructure.Persistence.Services;
 using SchoolApi.Infrastructure.Persistence.UnitOfWork;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,6 +37,18 @@ builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = jwtSettings["Issuer"],
+        ValidAudience = jwtSettings["Audience"],
+        //IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey))
+    };
 });
 
 
