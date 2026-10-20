@@ -48,7 +48,7 @@ builder.Services.AddAuthentication(options =>
         ValidateIssuerSigningKey = true,
         ValidIssuer = JwtSettings["Issuer"],
         ValidAudience = JwtSettings["Audience"],
-        IssuerSigningKey = secretKey
+        IssuerSigningKey = Encoding.UTF8.GetBytes(secretKey)
     };
 });
 
