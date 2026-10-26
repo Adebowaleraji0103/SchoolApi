@@ -32,7 +32,7 @@ var secretKey = JwtSettings["key"];
 if (string.IsNullOrWhiteSpace(secretKey))
 {
     throw new InvalidOperationException("Jwt secret key is empty or missing");
-};
+}
 
 builder.Services.AddAuthentication(options =>
 {
@@ -40,7 +40,7 @@ builder.Services.AddAuthentication(options =>
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 }).AddJwtBearer(options =>
 {
-    var TokenValidationParameters = new TokenValidationParameters
+     options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuer = true,
         ValidateAudience = true,
