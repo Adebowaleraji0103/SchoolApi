@@ -10,6 +10,7 @@ using SchoolApi.Domain.Entities;
 using SchoolApi.Infrastructure.Persistence.Data;
 using SchoolApi.Infrastructure.Persistence.Services;
 using SchoolApi.Infrastructure.Persistence.UnitOfWork;
+using SchoolApi.Infrastructure.Services;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,6 +26,7 @@ builder.Services.AddScoped<IStudentService, StudentServices>();
 builder.Services.AddScoped<ITeacherService, TeacherService>();
 builder.Services.AddScoped<IAuthService, AuthServices>();
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 
 var JwtSettings = builder.Configuration.GetSection("jwt");
 var secretKey = JwtSettings["key"];
