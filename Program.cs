@@ -45,7 +45,7 @@ if (string.IsNullOrWhiteSpace(secretKey))
 //        ValidateIssuer = true,
 //        ValidateAudience = true,
 //        ValidateLifetime = true,
-//        ValidateIssuerSigningKey = true,
+//        ValidateIssuerSigningKey = true,.
 
 //        ValidIssuer = JwtSettings["Issuer"],
 //        ValidAudience = JwtSettings["Audience"],
@@ -61,7 +61,14 @@ builder.Services.AddAuthentication(options =>
 {
     options.TokenValidationParameters = new TokenValidationParameters
     {
+        ValidateAudience = true,
+        ValidateIssuer = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
 
+        ValidIssuer = JwtSettings["Issuer"],
+        ValidAudience = JwtSettings["Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey))
     };
 });
 
