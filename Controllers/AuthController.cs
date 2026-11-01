@@ -40,8 +40,8 @@ namespace SchoolApi.Controllers
         {
             try
             {
-                await _authService.LoginAsync(dto);
-                return Ok("Login Succesful");
+             var token =  await _authService.LoginAsync(dto);
+                return Ok(new {message = "Login Successful", token});
             }
             catch(UnauthorizedAccessException ex)
             {
